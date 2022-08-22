@@ -6,8 +6,11 @@ import CharacterGrid from './components/characters/CharacterGrid'
 
 
 const App = () => {
+  //const [items, setItems] = useState([])
   const [items, setItems] = useState([])
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true) 
+  const [currentPage, setCurrentPage] = useState(1)
+  const [postsPerPage, setPostsPerPage] = useState(8)
 
   useEffect(() => {
     const getItems = async () => {
@@ -19,10 +22,16 @@ const App = () => {
     getItems()
   }, [])
 
+  //Get current Items
+  const indexOfLastItem = currentPage * postsPerPage
+  const indexOfFirstItem = indexOfLastItem - postsPerPage
+  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem)
+  console.log(currentItems)
+  
   return (
     <div className="container">
       <Header />
-      <CharacterGrid isLoading={isLoading} items={items} />
+      <CharacterGrid isLoading={isLoading} items={currentItems} />
     </div>
   );
 }

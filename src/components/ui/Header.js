@@ -1,6 +1,5 @@
 import React from 'react'
 import logo from '../../img/logo.png'
-import { useEffect, useState } from 'react'
 
 const Header = () => {
 
