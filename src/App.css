@@ -52,7 +52,7 @@ header img {
 }
 
 input[type='text'] {
-  display: block;
+  display:flex;
   padding: 10px;
   font-size: 20px;
   border: 0;

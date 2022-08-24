@@ -6,9 +6,7 @@ import CharacterGrid from './components/characters/CharacterGrid'
 import Pagination from './components/pagination/Pagination'
 import Search from './components/ui/Search'
 
-
 const App = () => {
-  //const [items, setItems] = useState([])
   const [items, setItems] = useState([])
   const [isLoading, setIsLoading] = useState(true) 
   const [query, setQuery] = useState('') 
@@ -23,20 +21,18 @@ const App = () => {
       setIsLoading(false)
     }
     getItems()
-  }, [])
+  }, [query])
 
-  //Get current Items
   const indexOfLastItem = currentPage * itemsPerPage
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
   const currentItems = items.slice(indexOfFirstItem, indexOfLastItem)
 
-  //change page 
   const paginate = (pageNumber) => setCurrentPage(pageNumber)
   
   return (
     <div className="container">
       <Header />
-      <Search />
+      <Search getQuery={(q) => setQuery(q)}/>
       <CharacterGrid isLoading={isLoading} items={currentItems} />
       <Pagination 
         itemsPerPage={itemsPerPage} 
